@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>regist menu</title>
+</head>
+<body>
+    <h1>신규 제품 등록</h1>
+
+    <form action="/product/regist" method="post">
+        <label>제품 이름 : </label><input type="text" name="productName"><br>
+        <label>제품 가격 : </label><input type="number" name="originCost"><br>
+        <label>카테고리 : </label>
+            <select name="categoryCode" id="categoryCode">
+            </select><br>
+        <label>판매 상태 : </label>
+            <select name="productionStatus">
+                <option value="Y">판매가능</option>
+                <option value="N">판매불가</option>
+            </select><br>
+        <input type="submit" value="제품 등록">
+    </form>
+
+    <!-- 비동기 !! -->
+    <script>
+        fetch('/product/category')
+            .then(res => res.json())
+            .then(data => {
+                const $categoryCode = document.getElementById('categoryCode');
+
+                for(let index in data) {
+                    const $option = document.createElement('option');
+                    $option.value = data[index].categoryCode;
+                    $option.textContent = data[index].categoryName;
+
+                    $categoryCode.appendChild($option);
+                }
+            });
+    </script>
+</body>
+</html>

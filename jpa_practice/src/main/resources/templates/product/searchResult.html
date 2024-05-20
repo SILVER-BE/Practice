@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>search result</title>
+    <style>
+        table, tr, th, td {
+            padding: 5px;
+            border: 1px solid black;
+            border-collapse: collapse;}
+    </style>
+</head>
+<body>
+    <h3>[[${ originCost }]]원을 초과하는 메뉴 목록 조회</h3>
+    <table>
+        <tr>
+            <th>제품 번호</th>
+            <th>제품 이름</th>
+            <th>제품 가격</th>
+            <th>입고 날짜</th>
+            <th>할인률</th>
+            <th>판매량</th>
+            <th>재고량</th>
+            <th>분류</th>
+            <th>판매상태</th>
+        </tr>
+        <tr th:each="product : ${ productList }">
+            <th th:text="${ product.productCode }"></th>
+            <th th:text="${ product.productName }"></th>
+            <th th:text="${ product.originCost }"></th>
+            <th th:text="${ product.releaseDate }"></th>
+            <th th:text="${ product.discountRate }"></th>
+            <th th:text="${ product.salesQuantity }"></th>
+            <th th:text="${ product.stockQuantity }"></th>
+            <th th:text="${ product.categoryCode }"></th>
+            <th th:text="${ product.productionStatus }"></th>
+        </tr>
+    </table>
+</body>
+</html>
